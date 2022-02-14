@@ -1,8 +1,6 @@
 package com.logistic.department.controller;
 
-import com.logistic.department.entity.Driver;
 import com.logistic.department.entity.Transport;
-import com.logistic.department.service.interfaces.DriverService;
 import com.logistic.department.service.interfaces.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

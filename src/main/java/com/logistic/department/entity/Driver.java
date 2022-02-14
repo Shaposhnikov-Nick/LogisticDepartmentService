@@ -44,27 +44,6 @@ public class Driver {
     private LocalDate licenceValidity;
 
     @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
-            mappedBy = "driver_id")
+            mappedBy = "driverId")
     private List<Transport> transports;
-
-//    @ManyToMany
-//    @JoinTable(name = "driver_licenses"
-//            , joinColumns = @JoinColumn(name = "driver_id")
-//            , inverseJoinColumns = @JoinColumn(name = "driven_license_id"))
-//    private List<DrivingLicense> licenses;
-
-//    public void addTransportsToDriver(Transport transport) {
-//        if (transports == null)
-//            transports = new ArrayList<>();
-//
-//        transports.add(transport);
-//        transport.setDriver(this);
-//    }
-
-//    public void addDrivingLicenseToDriver(DrivingLicense drivingLicense) {
-//        if (licenses == null)
-//            licenses = new ArrayList<>();
-//
-//        licenses.add(drivingLicense);
-//    }
 }

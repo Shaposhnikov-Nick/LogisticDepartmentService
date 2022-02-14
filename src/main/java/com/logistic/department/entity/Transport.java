@@ -1,8 +1,5 @@
 package com.logistic.department.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.logistic.department.enums.TransportType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +23,9 @@ public class Transport {
     @Column(name = "model")
     private String model;
 
-    @Column(name = "transport_type")
-    @Enumerated(EnumType.STRING)
-    private TransportType transportType;
+    @Column(name = "category")
+    private String transportCategory;
 
     @Column(name = "driver_id")
-    private int driver_id;
+    private int driverId;
 }

@@ -28,7 +28,7 @@ public class DriverServiceImpl implements DriverService {
         if (optional.isPresent())
             driver = optional.get();
 
-        return optional.get();
+        return driver;
     }
 
     @Override
