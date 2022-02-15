@@ -20,7 +20,15 @@ public class AttachmentController {
     @PutMapping("/transports/attachment/{transport_id}/{driver_id}")
     public Transport attachTransportToDriver(@PathVariable int transport_id, @PathVariable int driver_id) {
         Transport transport = transportService.getTransport(transport_id);
-        attachmentService.attachmentTransportToDriver(transport_id, driver_id);
+        attachmentService.attachmentTransportToDriver(transport, driver_id);
+        return transport;
+    }
+
+    // открепление автомобиля от водителя
+    @PutMapping("/transports/detachment/{transport_id}")
+    public Transport detachTransportFromDriver(@PathVariable int transport_id) {
+        Transport transport = transportService.getTransport(transport_id);
+        attachmentService.detachmentTransportFromDriver(transport);
         return transport;
     }
 }

@@ -1,14 +1,16 @@
 package com.logistic.department.service.interfaces;
 
+import com.logistic.department.entity.Transport;
+
 public interface AttachmentService {
 
     // проверка водителя перед закрепление автомобиля (открытые категории, дата окончания действия ВУ,
     // количество закрепленных за водителем автомобилей
-    boolean checkDriverBeforeAttachmentTransport(int transport_id, int driver_id);
+    boolean checkDriverBeforeAttachmentTransport(Transport transport, int driver_id);
 
     // закрепление автомобиля за водителем
-    void attachmentTransportToDriver(int transport_id, int driver_id);
+    void attachmentTransportToDriver(Transport transport, int driver_id);
 
     // открепление водителя от автомобиля
-    void detachmentTransportFromDriver(int transport_id, int driver_id);
+    void detachmentTransportFromDriver(Transport transport);
 }

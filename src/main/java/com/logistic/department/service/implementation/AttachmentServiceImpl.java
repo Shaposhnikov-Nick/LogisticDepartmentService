@@ -20,10 +20,10 @@ public class AttachmentServiceImpl implements AttachmentService {
     DriverService driverService;
 
     @Override
-    public boolean checkDriverBeforeAttachmentTransport(int transport_id, int driver_id) {
+    public boolean checkDriverBeforeAttachmentTransport(Transport transport, int driver_id) {
         boolean isChecked = false;
 
-        Transport transport = transportService.getTransport(transport_id);
+        //Transport transport = transportService.getTransport(transport_id);
 
         Driver driver = driverService.getDriver(driver_id);
 
@@ -32,27 +32,47 @@ public class AttachmentServiceImpl implements AttachmentService {
                 && driver.getLicenceValidity().isAfter(LocalDate.now().plusMonths(1))) {
 
             // категория автомобиля соответствует категории ВУ
-            if ((transport.getTransportCategory().equals("B") && driver.isLicenseCategoryB())
-                    || (transport.getTransportCategory().equals("C") && driver.isLicenseCategoryC())
-                    || (transport.getTransportCategory().equals("D") && driver.isLicenseCategoryD())) {
-                isChecked = true;
+            switch (transport.getTransportCategory()) {
+                case "B": {
+                    if (driver.isLicenseCategoryB())
+                        isChecked = true;
+                }
+                break;
+                case "C": {
+                    if (driver.isLicenseCategoryC())
+                        isChecked = true;
+                }
+                break;
+                case "D": {
+                    if (driver.isLicenseCategoryD())
+                        isChecked = true;
+                }
+                break;
             }
+
+
+            // категория автомобиля соответствует категории ВУ
+//            if ((transport.getTransportCategory().equals("B") && driver.isLicenseCategoryB())
+//                    || (transport.getTransportCategory().equals("C") && driver.isLicenseCategoryC())
+//                    || (transport.getTransportCategory().equals("D") && driver.isLicenseCategoryD())) {
+//                isChecked = true;
+//            }
         }
         return isChecked;
     }
 
     @Override
-    public void attachmentTransportToDriver(int transport_id, int driver_id) {
-        Transport transport = transportService.getTransport(transport_id);
-
-        if (checkDriverBeforeAttachmentTransport(transport_id, driver_id))
+    public void attachmentTransportToDriver(Transport transport, int driver_id) {
+        if (checkDriverBeforeAttachmentTransport(transport, driver_id))
             transport.setDriverId(driver_id);
 
         transportService.saveTransport(transport);
     }
 
     @Override
-    public void detachmentTransportFromDriver(int transport_id, int driver_id) {
+    public void detachmentTransportFromDriver(Transport transport) {
+        transport.setDriverId(0);
 
+        transportService.saveTransport(transport);
     }
 }
