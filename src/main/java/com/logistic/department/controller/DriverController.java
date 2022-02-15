@@ -1,6 +1,7 @@
 package com.logistic.department.controller;
 
 import com.logistic.department.entity.Driver;
+import com.logistic.department.exception_handling.NoSuchDriverException;
 import com.logistic.department.service.interfaces.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,13 @@ public class DriverController {
     //получение водителя по id
     @GetMapping("/drivers/{id}")
     public Driver getDriver(@PathVariable int id) {
-        return driverService.getDriver(id);
+        Driver driver = driverService.getDriver(id);
+
+        if (driver == null){
+            throw new NoSuchDriverException("Водитель с id = " + id + " отсутствует в базе данных");
+        }
+
+        return driver;
     }
 
     //добавление нового водителя
@@ -44,6 +51,12 @@ public class DriverController {
     // удаление водителя
     @DeleteMapping("/drivers/{id}")
     public String deleteDriver(@PathVariable int id) {
+        Driver driver = driverService.getDriver(id);
+
+        if (driver == null){
+            throw new NoSuchDriverException("Водитель с id = " + id + " отсутствует в базе данных");
+        }
+
         driverService.deleteDriver(id);
         return "Водитель с id = " + id + " был удален";
     }
