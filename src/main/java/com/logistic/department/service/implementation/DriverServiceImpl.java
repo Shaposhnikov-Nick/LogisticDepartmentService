@@ -2,7 +2,6 @@ package com.logistic.department.service.implementation;
 
 import com.logistic.department.dao.DriverRepository;
 import com.logistic.department.entity.Driver;
-import com.logistic.department.entity.Transport;
 import com.logistic.department.service.interfaces.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

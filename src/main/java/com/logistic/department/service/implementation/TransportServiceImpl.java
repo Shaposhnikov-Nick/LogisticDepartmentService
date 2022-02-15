@@ -1,14 +1,11 @@
 package com.logistic.department.service.implementation;
 
 import com.logistic.department.dao.TransportRepository;
-import com.logistic.department.entity.Driver;
 import com.logistic.department.entity.Transport;
-import com.logistic.department.service.interfaces.DriverService;
 import com.logistic.department.service.interfaces.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +14,6 @@ public class TransportServiceImpl implements TransportService {
 
     @Autowired
     private TransportRepository transportRepository;
-
-    @Autowired
-    private DriverService driverService;
 
     @Override
     public List<Transport> getAllTransports() {

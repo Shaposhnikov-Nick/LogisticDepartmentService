@@ -23,8 +23,6 @@ public class AttachmentServiceImpl implements AttachmentService {
     public boolean checkDriverBeforeAttachmentTransport(Transport transport, int driver_id) {
         boolean isChecked = false;
 
-        //Transport transport = transportService.getTransport(transport_id);
-
         Driver driver = driverService.getDriver(driver_id);
 
         // за водителем закреплено меньше 3 автомобилей и срок действия ВУ не истек
@@ -49,14 +47,6 @@ public class AttachmentServiceImpl implements AttachmentService {
                 }
                 break;
             }
-
-
-            // категория автомобиля соответствует категории ВУ
-//            if ((transport.getTransportCategory().equals("B") && driver.isLicenseCategoryB())
-//                    || (transport.getTransportCategory().equals("C") && driver.isLicenseCategoryC())
-//                    || (transport.getTransportCategory().equals("D") && driver.isLicenseCategoryD())) {
-//                isChecked = true;
-//            }
         }
         return isChecked;
     }
