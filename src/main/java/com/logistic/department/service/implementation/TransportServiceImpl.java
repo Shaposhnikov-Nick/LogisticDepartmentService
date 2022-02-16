@@ -1,6 +1,6 @@
 package com.logistic.department.service.implementation;
 
-import com.logistic.department.dao.TransportRepository;
+import com.logistic.department.repository.TransportRepository;
 import com.logistic.department.entity.Transport;
 import com.logistic.department.service.interfaces.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
