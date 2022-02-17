@@ -19,7 +19,7 @@ public class DriverController {
     DriverService driverService;
 
     //получение списка всех водителей
-    @ApiOperation(value = "Show all drivers ")
+    @ApiOperation(value = "Show all drivers")
     @GetMapping("/drivers")
     public List<Driver> showAllDrivers() {
         return driverService.getAllDrivers();
@@ -27,12 +27,12 @@ public class DriverController {
 
 
     //получение водителя по id
-    @ApiOperation(value = "Show driver ")
+    @ApiOperation(value = "Show driver")
     @GetMapping("/drivers/{id}")
     public Driver getDriver(@PathVariable int id) {
         Driver driver = driverService.getDriver(id);
 
-        if (driver == null){
+        if (driver == null) {
             throw new NoSuchDriverException("Водитель с id = " + id + " отсутствует в базе данных");
         }
 
@@ -40,7 +40,7 @@ public class DriverController {
     }
 
     //добавление нового водителя
-    @ApiOperation(value = "Add driver ")
+    @ApiOperation(value = "Add driver")
     @PostMapping("/drivers")
     public Driver addNewDriver(@RequestBody Driver driver) {
         driverService.saveDriver(driver);
@@ -48,6 +48,7 @@ public class DriverController {
     }
 
     // изменение водителя
+    @ApiOperation(value = "Change driver")
     @PutMapping("/drivers")
     public Driver updateDriver(@RequestBody Driver driver) {
         driverService.saveDriver(driver);
@@ -60,7 +61,7 @@ public class DriverController {
     public String deleteDriver(@PathVariable int id) {
         Driver driver = driverService.getDriver(id);
 
-        if (driver == null){
+        if (driver == null) {
             throw new NoSuchDriverException("Водитель с id = " + id + " отсутствует в базе данных");
         }
 
